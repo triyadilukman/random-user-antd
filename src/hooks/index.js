@@ -17,13 +17,13 @@ const useRandomUsers = (page = 0) => {
 				const { results, info } = response;
         if (results && info) {
           setData({ results, info })
+          setError('');
           setLoading(false)
         }
 			})
 			.catch((error) => {
         setError(error);
         setLoading(false)
-				console.log("error", error);
 			});
 	}, [page]);
 

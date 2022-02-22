@@ -29,7 +29,7 @@ const DataTable = ({ results, loading, onChangePage }) => {
 			columns={TABLE_COLUMN(css)}
 			dataSource={dataMemo}
 			onChange={onChangePagination}
-			pagination={{ defaultCurrent: 1, total: 20  }} 
+			pagination={{ defaultCurrent: 1, total: 100 }} 
 		/>
 	);
 };

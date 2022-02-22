@@ -31,6 +31,13 @@ export default function randomUserReducer(state, { type, payload }) {
 			};
 		}
 
+		case 'SET_FETCHING': {
+			return {
+				...state,
+				fetching: payload.fetching,
+			}
+		}
+
 		default: {
 			throw new Error(`Unhandled action type: ${type}`);
 		}

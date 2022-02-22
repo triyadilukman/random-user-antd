@@ -1,3 +1,4 @@
+import {  useState } from "react";
 import { Col, Row } from "antd";
 import { Select, Input, Button } from "antd";
 import { formSty, rowSty } from "./styles";
@@ -6,12 +7,17 @@ const { Option } = Select;
 const { Search } = Input;
 
 const Filter = ({ onChangeName, onChangeGender, onReset, genderValue, nameValue }) => {
+	const [name, setName] = useState(nameValue);
+	const [gender, setGender] = useState(genderValue);
+
 	const onSearch = (e) => {
     const name = e.target.value;
+		setName(name);
     onChangeName({ name });
 	};
 
 	const onSelect = gender => {
+		setGender(gender);
 		onChangeGender({ gender })
 	}
 
@@ -22,12 +28,12 @@ const Filter = ({ onChangeName, onChangeGender, onReset, genderValue, nameValue 
 					className={formSty}
 					placeholder="Search"
 					onChange={onSearch}
-					value={nameValue}
+					value={name}
 					enterButton
 				/>
 			</Col>
 			<Col span={8}>
-				<Select value={genderValue} className={formSty} onChange={onSelect}>
+				<Select value={gender} className={formSty} onChange={onSelect}>
 					<Option value="">All Gender</Option>
 					<Option value="male">Male</Option>
 					<Option value="female">Female</Option>

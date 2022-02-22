@@ -7,16 +7,21 @@ import {
 export const filterResult = (array, filters) => {
 	return array.filter((f) => {
 		const getName = `${f.name.first} ${f.name.last}`.toLocaleLowerCase();
+		const getUserName = f.login.username;
 
+		// filter by name
 		const nameCondition = getName.includes(
 			filters["name"].toLocaleLowerCase()
 		);
+
+		// filter by user name
+		const userNameCondition = getUserName.includes(filters["name".toLocaleLowerCase()])
 
 		const genderCondition = filters["gender"]
 			? f.gender === filters["gender"].toLocaleLowerCase()
 			: true;
 
-		return nameCondition && genderCondition;
+		return (nameCondition || userNameCondition) && genderCondition;
 	});
 };
 

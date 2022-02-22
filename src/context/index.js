@@ -1,4 +1,5 @@
-import React, { useReducer, createContext, useMemo } from "react";
+import React, { useReducer, createContext, useMemo, useEffect } from "react";
+import { notification  } from "antd";
 import useRandomUsers from "hooks";
 import randomUserReducer from "./reducer";
 import randomUserActions from "./actions";
@@ -18,12 +19,12 @@ function RandomUserProvider({ children }) {
 		},
 	});
 
-	const { loading, results, info } = useRandomUsers(state.page);
+	const { loading, results, info, error } = useRandomUsers(state.page);
 
 	const tempState = useMemo(
 		() => ({
 			page: state.page,
-			fetching: loading,
+			fetching: loading || state.fetching,
 			initialResults: results,
 			results: state.filters.name || state.filters.gender ? state.results : results,
 			info,
@@ -33,6 +34,7 @@ function RandomUserProvider({ children }) {
 			},
 		}),
 		[
+			state.fetching,
 			state.results,
 			state.filters,
 			state.page,
@@ -41,6 +43,14 @@ function RandomUserProvider({ children }) {
 			info,
 		]
 	);
+
+	useEffect(() => {
+		if (error) {
+			notification['error']({
+				message: error,
+		});
+		}
+	}, [error])
 
 	return (
 		<RandomUserContext.Provider value={{ ...tempState }}>

@@ -134,4 +134,4 @@
      -> make sure app runing well at beta -> deploy production -> make sure app running well at production.
    - if some incident middle of deployment we can revert with build the app, to our stable build number.
    
-9.
+9. https://github.com/triyadilukman/random-user-antd/tree/master/readme-example

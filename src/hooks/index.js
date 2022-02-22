@@ -9,12 +9,14 @@ const useRandomUsers = (page = 0) => {
     info: null,
   });
 
+  const { results, info } = data;
+
   useEffect(() => {
 		getUsers(page)
 			.then((response) => {
 				const { results, info } = response;
         if (results && info) {
-          setData({ ...data, results, info })
+          setData({ results, info })
           setLoading(false)
         }
 			})
@@ -25,7 +27,7 @@ const useRandomUsers = (page = 0) => {
 			});
 	}, [page]);
 
-  return { results: data.results, info: data.info, loading, error }
+  return { results, info, loading, error }
 }
 
 export default useRandomUsers;

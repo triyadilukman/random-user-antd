@@ -1,4 +1,4 @@
-### Run The App 
+### Theory Test
 1. class is a function, that has a reference to its current execution context, called 'this'.
    'this' keyword is used for assign some value or function.
    when we create variable using new keyword put in front of function, its like brand new empty object created, and get linked to property of class

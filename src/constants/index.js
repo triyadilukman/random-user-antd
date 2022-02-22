@@ -9,6 +9,7 @@ const TABLE_COLUMN = (css) => [
 	{
 		title: "User Name",
 		dataIndex: "userName",
+		sorter: (a, b) => a.userName.localeCompare(b.userName),
 	},
 	{
 		title: "Name",

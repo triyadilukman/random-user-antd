@@ -1,6 +1,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This is just random project using random user API that have capabilities to search user by name / username, gender, paginate, and reset filter.
+This is just random project using random user API that have capabilities to filter by name / username, gender, paginate, sort, and reset filter.
 
 This project was built with
 * [Create React App](https://github.com/facebook/create-react-app).

@@ -8,8 +8,7 @@ import { Table } from "antd";
 const DataTable = ({ results, loading, onChangePage }) => {
 	const onChangePagination = (pagination, _, sorter) => {
 		// prevent refetch user pagination while sort
-		if (!sorter || !sorter.column)
-			onChangePage(pagination.current)
+		if (!sorter || !sorter.column) onChangePage(pagination.current);
 	};
 
 	const dataMemo = useMemo(() => {
@@ -29,7 +28,12 @@ const DataTable = ({ results, loading, onChangePage }) => {
 			columns={TABLE_COLUMN(css)}
 			dataSource={dataMemo}
 			onChange={onChangePagination}
-			pagination={{ defaultCurrent: 1, total: 100 }} 
+			pagination={{
+				defaultCurrent: 1,
+				total: 100,
+				showQuickJumper: false,
+				showSizeChanger: false,
+			}}
 		/>
 	);
 };

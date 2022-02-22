@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRandomUserContext, useRandomUserDispatch } from "context";
+import FilterComponent from "components/Filter";
+import DataTable from "components/DataTable";
+import View from "./View";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import "./App.css";
+
+const App = () => {
+	const { results, fetching, filters } = useRandomUserContext();
+	const { filterByName, filterByGender, resetFilter, setPage } =
+		useRandomUserDispatch();
+
+	return (
+		<View>
+			<FilterComponent
+				onChangeName={filterByName}
+				onChangeGender={filterByGender}
+				onReset={resetFilter}
+				nameValue={filters.name}
+				genderValue={filters.gender}
+			/>
+			<DataTable
+				results={results}
+				loading={fetching}
+				onChangePage={setPage}
+			/>
+		</View>
+	);
+};
 
 export default App;
